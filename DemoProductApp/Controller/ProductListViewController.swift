@@ -26,6 +26,7 @@ class ProductListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "Product List"
         setupUI()
         fetchProducts()
     }
@@ -80,6 +81,13 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedProduct = products[indexPath.row]
+        let detailVC = ProductDetailViewController()
+        detailVC.product = selectedProduct
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
